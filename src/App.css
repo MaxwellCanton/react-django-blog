@@ -29,6 +29,10 @@
   border-bottom-right-radius: 20px;
   height: 100%;
   width:100%;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
 }
 
 html, body {
@@ -44,3 +48,16 @@ flex-wrap: wrap; */
   justify-content: center;
   text-align: center;
 }
+
+.card-movie{
+  max-width: 70%;
+  height:100px;
+  margin-left:16%;
+  margin-top:5%;
+}
+
+div.chakra-select__wrapper.css-42b2qy{
+  height: 100%;
+}
+
+
