@@ -16,7 +16,7 @@ class Category(models.Model):
 class Note(models.Model):
 
     title = models.CharField(max_length=255)
-    release_date = models.DateField(default=timezone.now)
+    release_date = models.DateField()
     plot = models.TextField()
     genre = models.ForeignKey(Category, on_delete=models.PROTECT)
 
@@ -33,7 +33,7 @@ class Rate(models.Model):
 
     value = models.IntegerField()
     user = models.ForeignKey(AppUser, on_delete=models.PROTECT)
-    movie = models.ForeignKey(Note, on_delete=models.PROTECT)
+    movie = models.ForeignKey(Note, on_delete=models.CASCADE)
     review = models.TextField()
     value = models.IntegerField(default  = 0)
 
@@ -45,7 +45,7 @@ class Rate(models.Model):
 
 class Watchlist(models.Model):
     
-    movie = models.ForeignKey(Note, on_delete=models.PROTECT)
+    movie = models.ForeignKey(Note, on_delete=models.CASCADE)
     user = models.ForeignKey(AppUser, on_delete=models.PROTECT)
 
     objects = models.Manager()
