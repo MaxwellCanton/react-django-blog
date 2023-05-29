@@ -1,0 +1,68 @@
+#genre-movie{
+    width:50%;
+    text-align:right;
+}
+
+#released-movie{
+    width:50%;
+    text-align:left;
+    margin-left:5%;
+}
+
+#description-movie{
+    font-size:17px;
+    margin-left:10%;
+    margin-right:10%;
+    margin-top:2%;
+}
+
+#handle-movie{
+    justify-content: "right";
+    margin:"2%";
+    display:"flex" 
+}
+
+
+.card-review{
+    margin-top: 3%;
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: left;
+    height:120px;
+
+    border-top: 2px solid #00A4BD;
+    border-bottom: 2px solid #00A4BD;
+    padding: 7px;
+    border-radius: 12px;
+
+}
+
+.card-review-information{
+border-bottom: 1px solid;
+}
+
+.card-review-content{
+margin: 1%;
+}
+
+#delete-movie{
+    margin-right: 1%;
+}
+
+#add-movie{
+    margin-left: 1%;
+}
+
+#control-buttons-movie-box{
+    justify-content: right;
+    margin:2%;
+    display:flex;
+}
+
+#title-movie{
+    font-size:40px;
+}
+
+#information-movie{
+    display:flex;
+}
