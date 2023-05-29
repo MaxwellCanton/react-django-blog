@@ -1,18 +1,56 @@
 from django.db import models
 from django.utils import timezone
 import uuid
-# Create your models here.
+from security.models import AppUser
 
 
-class Post(models.Model):
+class Category(models.Model):
 
-    object_id =  models.UUIDField(default = uuid.uuid4, unique=True)
-    title = models.CharField(max_length=255)
-    created = models.DateTimeField(default=timezone.now)
-    content = models.TextField()
-    slug = models.SlugField(unique=True)
-
+    title = title = models.CharField(max_length=255)
     objects = models.Manager()
 
     def __str__(self):
         return self.title
+
+
+class Note(models.Model):
+
+    title = models.CharField(max_length=255)
+    release_date = models.DateField(default=timezone.now)
+    plot = models.TextField()
+    genre = models.ForeignKey(Category, on_delete=models.PROTECT)
+
+    objects = models.Manager()
+
+    class Meta:
+        ordering = ('-release_date',)
+
+    def __str__(self):
+        return self.title
+
+
+class Rate(models.Model):
+
+    value = models.IntegerField()
+    user = models.ForeignKey(AppUser, on_delete=models.PROTECT)
+    movie = models.ForeignKey(Note, on_delete=models.PROTECT)
+    review = models.TextField()
+    value = models.IntegerField(default  = 0)
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return "rate-" + str(self.value) + "-movie-" + str(self.movie)
+
+
+class Watchlist(models.Model):
+    
+    movie = models.ForeignKey(Note, on_delete=models.PROTECT)
+    user = models.ForeignKey(AppUser, on_delete=models.PROTECT)
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return "movie-" + str(self.movie.title) + "-user-" + str(self.user.email)
+
+
