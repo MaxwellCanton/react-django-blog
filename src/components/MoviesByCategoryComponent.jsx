@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, SimpleGrid } from '@chakra-ui/react'
+import { Card, SimpleGrid, Button} from '@chakra-ui/react'
 import { return_notes_by_category } from '../redux/actions/category'
 import { useEffect } from 'react';
 import { connect } from "react-redux";
@@ -18,7 +18,7 @@ function MoviesByCategoryComponent({return_notes_by_category, movies_by_category
         <div className="container">
             <div className="main-panel">
                 
-                <SimpleGrid columns={[2, null, 5]} >
+                <SimpleGrid columns={[2, null, 2]} >
                     { 
                         movies_by_category ? 
                         <>
@@ -29,7 +29,7 @@ function MoviesByCategoryComponent({return_notes_by_category, movies_by_category
                                             {movie.title}
                                         </div>
                                         <div>
-                                            <Link to={`/notes/api/${movie.id}`}>rate link</Link>
+                                        <Button size='sm' colorScheme='teal' variant='outline'> <Link to={`/notes/api/${movie.id}`}>info</Link> </Button>
                                         </div>
                                     </Card>
                                 ))

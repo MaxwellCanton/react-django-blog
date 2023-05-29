@@ -14,7 +14,7 @@ function BodyComponent({return_notes, note_list}){
         <div className="container">
             <div className="main-panel">
 
-                <SimpleGrid columns={[2, null, 5]} >
+                <SimpleGrid columns={[2, null, 3]} >
                     { 
                         note_list ? 
                         <>
@@ -25,7 +25,7 @@ function BodyComponent({return_notes, note_list}){
                                             <Text color='teal'>{note.title}</Text>
                                         </div>
                                         <div>
-                                        <Button size='sm' colorScheme='teal' variant='outline'>  <Link to={`/notes/api/${note.id}`}>rate link</Link> </Button>
+                                        <Button size='sm' colorScheme='teal' variant='outline'>  <Link to={`/notes/api/${note.id}`}>info</Link> </Button>
                                         </div>
                                     </Card>
                                 ))

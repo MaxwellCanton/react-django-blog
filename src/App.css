@@ -51,7 +51,7 @@ flex-wrap: wrap; */
 
 .card-movie{
   max-width: 70%;
-  height:100px;
+  /* height:100px; */
   margin-left:16%;
   margin-top:5%;
 }

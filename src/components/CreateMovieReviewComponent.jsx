@@ -27,7 +27,7 @@ export function CreateMovieReviewComponent({return_categories, category_list}){
                     <Input placeholder='Title' {...register("title", {required:true})}/>
                     {errors.title && <span>this field is required</span>}
 
-                    <Input placeholder="Released date" size="md" type="date" {...register("released_date", {required:true})}/> 
+                    <Input placeholder="Released date" size="md" type="date" {...register("release_date", {required:true})}/> 
                     {errors.released_date && <span>this field is required</span>}
 
 

@@ -1,7 +1,7 @@
 import { return_watchlist } from '../redux/actions/note'
 import { connect } from "react-redux";
 import { useEffect } from 'react';
-import { Card, SimpleGrid } from '@chakra-ui/react'
+import { Card, SimpleGrid, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
 export function WatchlistComponent({return_watchlist, movies_list}){
@@ -12,7 +12,7 @@ export function WatchlistComponent({return_watchlist, movies_list}){
         <div className='container'>
             <div className='main-panel'>
             
-                <SimpleGrid columns={[2, null, 5]} >
+                <SimpleGrid columns={[2, null, 2]} >
                         { 
                             movies_list ? 
                             <>
@@ -23,7 +23,7 @@ export function WatchlistComponent({return_watchlist, movies_list}){
                                                 {movie.title}
                                             </div>
                                             <div>
-                                                <Link to={`/notes/api/${movie.id}`}>rate link</Link>
+                                            <Button size='sm' colorScheme='teal' variant='outline'><Link to={`/notes/api/${movie.id}`}>info</Link></Button>
                                             </div>
                                         </Card>
                                     ))
