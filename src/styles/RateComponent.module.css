@@ -1,0 +1,25 @@
+.rate_component{
+    margin-top:4%;
+    margin-bottom:8%;
+    display:flex;
+    margin-left:15%;
+    margin-right:15%;
+}
+
+#popular_rate_movie{
+    width:80%;
+    pointer-events:none;
+}
+
+#my_rate{
+    width:20%;
+}
+
+#my_rate_description{
+    margin-bottom:2%;
+}
+
+#my_rate_number{
+    margin-bottom:2%;
+    display:flex;
+}
