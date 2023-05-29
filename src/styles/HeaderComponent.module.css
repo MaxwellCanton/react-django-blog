@@ -1,0 +1,38 @@
+#select-categories-box-sup{
+    width:50%;
+    text-align:left;
+}
+
+#select-categories-box-inf{
+    width:40%;
+    height:100%;
+}
+
+#button_create{
+    height: 100%;
+    margin-right:3%;
+}
+
+#accounts-buttons-box{
+    width:42%;
+    text-align:right;
+}
+
+#button_logout{
+    height: 100%;
+    margin-left: 3%;
+}
+
+#button_login{
+    height: 100%;
+}
+
+#button_register{
+    height: 100%;
+    margin-left: 3%;
+}
+
+#button_watchlist{
+    height: 100%;
+    margin-left: 3%;
+}
