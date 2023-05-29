@@ -6,14 +6,17 @@ from rest_framework.authentication import SessionAuthentication
 from .models import Note, Category, Rate, Watchlist
 from .serializers import NoteSerializer, CategorySerializer, RateSerializer, SaveRateSerializer, WatchlistSerializer
 from django.db.models import Q
-
+from rest_framework import generics
 # Create your views here.
 
-class NotesView(APIView):
+class NotesView(generics.GenericAPIView):
+
+    serializer_class = NoteSerializer
+
     def get(self, request, format=None):
 
         if Note.objects.all().exists():
-            notes = Note.objects.all()
+            notes = Note.objects.all().order_by('-release_date')
             serializer = NoteSerializer(notes, many=True)
             return Response({'notes':serializer.data}, status=status.HTTP_200_OK)
         else:
@@ -26,7 +29,7 @@ class NotesView(APIView):
             movie_saved  = serializer.save()
             return Response({"success": True}, status=status.HTTP_200_OK)
         else:
-            return Response({"success": False})
+            return Response({"success": serializer.errors})
 
 
 class NoteByIdView(APIView):
@@ -57,7 +60,10 @@ class NoteByIdView(APIView):
     
 
 
-class CategoriesView(APIView):
+class CategoriesView(generics.GenericAPIView):
+
+    serializer_class = CategorySerializer
+
     def get(self, request, format=None):
 
         if Category.objects.all().exists():
@@ -66,6 +72,15 @@ class CategoriesView(APIView):
             return Response({'categories':serializer.data}, status=status.HTTP_200_OK)
         else:
             return Response({'error':'there are not categories'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    def post(self, request, format=None):
+        category =  request.data
+        serializer = CategorySerializer(data=category)
+        if serializer.is_valid():
+            category_saved  = serializer.save()
+            return Response({"success": True}, status=status.HTTP_200_OK)
+        else:
+            return Response({"success": serializer.errors})
 
 
 class NotesByCategory(APIView):
@@ -88,7 +103,12 @@ class RatesByMovie(APIView):
             return Response({'error':'there are not rates for this movie'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-class RateView(APIView):
+class RateView(generics.GenericAPIView):
+
+    permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (SessionAuthentication,)
+
+    serializer_class = SaveRateSerializer
 
     def post(self, request, format=None):
         rate =  request.data

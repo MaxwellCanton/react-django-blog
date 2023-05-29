@@ -10,11 +10,15 @@ from rest_framework import permissions, status
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 from rest_framework.response import Response
+from rest_framework import generics
 
 UserModel = get_user_model()
 
-class UserRegister(APIView):
+class UserRegister(generics.GenericAPIView):
     permission_classes = (permissions.AllowAny,)
+
+    serializer_class = UserRegisterSerializer
+
     def post(self, request):
         request.data['username'] = request.data['email']
         clean_data = request.data
@@ -35,10 +39,12 @@ class UserRegister(APIView):
         return Response({"data":serializer.errors},status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserLogin(APIView):
+class UserLogin(generics.GenericAPIView):
     permission_classes = (permissions.AllowAny,)
     authentication_classes = (SessionAuthentication,)
     
+    serializer_class = UserLoginSerializer
+
     def post(self, request):
         data = request.data
         email = data['email'].strip()
@@ -68,6 +74,9 @@ class UserView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
     authentication_classes = (SessionAuthentication,)
     
+    serializer_class = UserSerializer
+
+
     def get(self, request):
         serializer = UserSerializer(request.user)
         return Response({'user': serializer.data}, status=status.HTTP_200_OK)

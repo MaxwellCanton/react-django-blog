@@ -53,7 +53,6 @@ class SaveRateSerializer(serializers.ModelSerializer):
 
     def to_representation(self, obj):
         data = super().to_representation(obj)
-        data['user'] = user_id
 
         return data
 
