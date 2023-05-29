@@ -57,29 +57,33 @@ function DetailNoteComponent ({return_note_by_id, detail_note, return_rates_by_m
                             <div id={styles["edit-movie"]} >
                                 <Button colorScheme='teal' variant='solid'> <Link to={`/notes/api/update/${detail_note.id}`}>update</Link></Button>
                             </div>
-
-                            <div id={styles["add-movie"]} >
-                                <Button onClick={async () => {
-                                    const res = await add_movie_watchlist(detail_note.id);
-                                    if(res == true){
-                                        toast({
-                                            title: 'good!',
-                                            description: "The movies has been added successfully to your watchlist",
-                                            status: 'success',
-                                            duration: 9000,
-                                            isClosable: true,
-                                        })
-                                    }else{
-                                        toast({
-                                            title: 'ups!',
-                                            description: res,
-                                            status: 'warning',
-                                            duration: 9000,
-                                            isClosable: true,
-                                        })
-                                    }
-                                }} colorScheme='pink' variant='solid'> Add </Button>
-                            </div>
+                            {
+                                statusLogin ? <>
+                                    <div id={styles["add-movie"]} >
+                                        <Button onClick={async () => {
+                                            const res = await add_movie_watchlist(detail_note.id);
+                                            if(res == true){
+                                                toast({
+                                                    title: 'good!',
+                                                    description: "The movies has been added successfully to your watchlist",
+                                                    status: 'success',
+                                                    duration: 9000,
+                                                    isClosable: true,
+                                                })
+                                            }else{
+                                                toast({
+                                                    title: 'ups!',
+                                                    description: res,
+                                                    status: 'warning',
+                                                    duration: 9000,
+                                                    isClosable: true,
+                                                })
+                                            }
+                                        }} colorScheme='pink' variant='solid'> Add </Button>
+                                    </div>
+                                </> : <></>
+                            }
+                            
                         </div>
 
                     </> : <> no items </>
